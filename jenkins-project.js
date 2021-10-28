@@ -2,8 +2,6 @@ const fs = require('fs')
 const input = fs.readFileSync('./jenkins.txt', 'utf-8')
 
 const cities = [];
-//const foundThises = [];
-
 const reCities = /\@[a-zA-Z]+/g;
 //const reThis = /../g;
 
@@ -46,5 +44,7 @@ for(x of coordsWithLetters){
         coordinates.push(coord+"°")
     }
 }
-console.log(coordinates);
+//console.log(coordinates);
 // console.log(coordsWithLetters);
+
+const reFoundThises
