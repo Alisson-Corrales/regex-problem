@@ -30,21 +30,73 @@ const fixC3 = fixC2.replace(re3, "$1 ")
 
 
 //#2
-//const reCoords = /(7|63+|63-225|)/g;
 const regCoords = /((\d)[a-zA-Z]{3,}){3}°/g
-const reCoords2 = /\d/g
-//const reCoords3 = //g
-//console.log(input);
+const regTwoDig = /((\d)[a-zA-Z]{3,}){2}'/g
+const regOneDig = /((\d)[a-zA-Z]{3,}){2}\./g
+const regZeroDig = /(\d)[a-zA-Z]{3,}(")[a-z]{3,}([NESW])/g
+
+
 const coordinates = [];
-const coordsWithLetters = input.match(regCoords);
-// coordsWithLetters.match(reCoords2)
-for(x of coordsWithLetters){
-    let coord = (x.match(reCoords2).join(""));
+const coordinates2 = [];
+const coordinates3 = [];
+const coordinates4 = [];
+
+let match = regZeroDig.exec(input)
+while(match){
+    console.log(match[1]+match[2]+match[3]);
+
+    if(match[1] > 7 && match[1] < 0){
+        console.log(match[1]);
+    }
+}
+console.log(match);
+
+const threeDigCoord = input.match(regCoords);
+const twoDigCoord = input.match(regTwoDig);
+const oneDigCoord = input.match(regOneDig);
+// const zeroDigCoord = input.match(regZeroDig);
+
+// /const fixZero = /(\d)"[WESN]/
+// /console.log(zeroDigCoord.match(fixZero));
+
+//const alphabet = [a, b, c, d, e, f, g, h, i, j, k, l, m,n,o,p,q,r,s,t,u,v,w,x,y,z]
+
+for(x of threeDigCoord){
+    let regFix = /\d/g
+    let coord = (x.match(regFix).join(""));
     if(coord < 256 && coord > 0){
         coordinates.push(coord+"°")
     }
 }
+for(x of twoDigCoord){
+    const regFix = /\d/g;
+    let coord = (x.match(regFix).join(""));
+    if(coord < 64 && coord > 0){
+        coordinates2.push(coord+"'")
+    }
+}
+for(x of oneDigCoord){
+    const regFix = /\d/g;
+    let coord = (x.match(regFix).join(""));
+    if(coord < 64 && coord > 0){
+        coordinates3.push(coord+".")
+    }
+}
+// console.log(zeroDigCoord);
+// for(x of zeroDigCoord){
+//     const regFix = /\d/g;
+//     let coord = (x.match(regFix).join(""));
+//     if(coord < 8 && coord > 0){
+//         coordinates4.push(coord)
+//     }
+// }
 //console.log(coordinates);
-// console.log(coordsWithLetters);
+//console.log(coordinates2);
+//console.log(coordinates3);
+console.log(coordinates4);
 
-const reFoundThises
+
+// for (let i = 0; i < 26; i++) {
+//     zeroDigCoord.replace('alphabet', '')
+
+// }
